@@ -20,7 +20,7 @@ import { ROUTES } from "./app.routes";
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(ROUTES, { useHash: true }),
+    RouterModule.forRoot(ROUTES, { useHash: true, relativeLinkResolution: 'legacy' }),
   ],
   providers: [],
 
