@@ -14,7 +14,10 @@ export class Tab1Page {
     private router: Router,
     private alertCtrl: AlertController
   ) {}
-
+  listaSeleccionada(lista){
+    console.log({lista});
+    this.router.navigateByUrl(`/tabs/tab1/agregar/${lista.id}`);
+  }
   async agregarLista() {
     // this.router.navigateByUrl('tabs/tab1/agregar');
     const alert = await this.alertCtrl.create({
@@ -38,7 +41,8 @@ export class Tab1Page {
               return;
             }
             // Crear la lista
-            this.deseoService.crearLista(data.titulo);
+            const listaId = this.deseoService.crearLista(data.titulo);
+            this.router.navigateByUrl(`/tabs/tab1/agregar/${listaId}`);
           },
         },
       ],
