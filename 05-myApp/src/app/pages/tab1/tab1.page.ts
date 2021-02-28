@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
 import { DeseosService } from 'src/app/services/deseos.service';
 
 @Component({
@@ -11,42 +9,5 @@ import { DeseosService } from 'src/app/services/deseos.service';
 export class Tab1Page {
   constructor(
     public deseoService: DeseosService,
-    private router: Router,
-    private alertCtrl: AlertController
   ) {}
-  listaSeleccionada(lista){
-    console.log({lista});
-    this.router.navigateByUrl(`/tabs/tab1/agregar/${lista.id}`);
-  }
-  async agregarLista() {
-    // this.router.navigateByUrl('tabs/tab1/agregar');
-    const alert = await this.alertCtrl.create({
-      header: 'Nueva lista',
-      inputs: [
-        { name: 'titulo', type: 'text', placeholder: 'Nombre de la lista' },
-      ],
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancelar');
-          },
-        },
-        {
-          text: 'Crear',
-          handler: (data) => {
-            console.log(data);
-            if (data.titulo.length === 0) {
-              return;
-            }
-            // Crear la lista
-            const listaId = this.deseoService.crearLista(data.titulo);
-            this.router.navigateByUrl(`/tabs/tab1/agregar/${listaId}`);
-          },
-        },
-      ],
-    });
-    alert.present();
-  }
 }
