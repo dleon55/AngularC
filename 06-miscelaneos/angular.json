@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "b8c40758-6716-4044-9e1e-70c332b3aa2d"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -26,14 +29,17 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/b4/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/jquery/jquery.slim.min.js",
+              "src/assets/tether/tether.js",
+              "src/assets/b4/js/bootstrap.min.js",
+              "src/assets/font-awesome-4.7.0/css/font-awesome.min.css"
+            ]
           },
           "configurations": {
             "production": {
@@ -89,13 +95,8 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.scss"],
             "scripts": []
           }
         },
@@ -107,9 +108,7 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
