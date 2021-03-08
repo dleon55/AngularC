@@ -5,7 +5,6 @@ import {
   AfterViewInit,
   Component,
   DoCheck,
-  OnChanges,
   OnInit,
 } from '@angular/core';
 
@@ -21,17 +20,21 @@ import {
     <p [appResaltado]="'red'">Hola mundo..</p>
 
     <app-ng-switch></app-ng-switch>
+
+    <mat-slider min="1" max="100" step="1" value="1"></mat-slider>
+
+    <i class="fas fa-pencil-alt"></i>
   `,
   styles: [],
 })
+// OnChanges,
 export class HomeComponent
   implements
     OnInit,
-    OnChanges,
-    DoCheck,
     AfterContentInit,
     AfterContentChecked,
     AfterViewInit,
+    DoCheck,
     AfterViewChecked {
   constructor() {
     console.log('Constructor');
@@ -40,9 +43,9 @@ export class HomeComponent
   ngOnInit(): void {
     console.log('onInit');
   }
-  ngOnChanges(): void {
-    console.log('onChanges');
-  }
+  // ngOnChanges(): void {
+  //   console.log('onChanges');
+  // }
   ngDoCheck(): void {
     console.log('doCheck');
   }
@@ -58,6 +61,7 @@ export class HomeComponent
   ngAfterViewChecked(): void {
     console.log('AfterViewChecked');
   }
+  // tslint:disable-next-line: use-lifecycle-interface
   ngOnDestroy(): void {
     console.log('OnDestroy');
   }

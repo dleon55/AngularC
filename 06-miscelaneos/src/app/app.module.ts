@@ -16,7 +16,9 @@ import { UsuarioNuevoComponent } from './components/usuario/usuario-nuevo.compon
 import { UsuarioEditarComponent } from './components/usuario/usuario-editar.component';
 import { UsuarioDetalleComponent } from './components/usuario/usuario-detalle.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-
+import { MatSliderModule } from '@angular/material/slider';
+import { HttpClientModule } from '@angular/common/http';
+import {MatIconModule} from '@angular/material/icon';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +38,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatSliderModule,
+    HttpClientModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
