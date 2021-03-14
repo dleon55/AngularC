@@ -1,0 +1,67 @@
+<h1>Héroe <small>Nombre del Héroe</small></h1>
+<hr />
+<div class="row text-right">
+    <div class="col">
+        <button class="btn btn-danger" [routerLink]="['/heroes']">
+      <i class="fa fa-arrow-left"></i> Regresar
+    </button>
+    </div>
+</div>
+<div class="row animated fadeIn faster">
+    <div class="col">
+        <form (ngSubmit)="guardar(f)" #f="ngForm">
+            <div class="form-group">
+                <label for="idFirebase">Firebase ID</label>
+                <input type="text" class="form-control" id="idFirebase" aria-describedby="idFirebaseHelp" placeholder="Firebase ID" [(ngModel)]="heroe.id" name="id" disabled="disabled" />
+                <small id="idFirebaseHelp" class="form-text text-muted">Autogenerado</small
+        >
+      </div>
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input
+          type="text"
+          class="form-control"
+          id="nombre"
+          aria-describedby="idFirebaseHelp"
+          placeholder="Nombre del héroe"
+          [(ngModel)]="heroe.nombre"
+          name="nombre"
+          required
+        />
+        <small id="nombreHelp" class="form-text text-muted"
+          >Nombre del héroe</small
+        >
+      </div>
+      <div class="form-group">
+        <label for="poder">Poder</label>
+        <input
+          type="text"
+          class="form-control"
+          id="poder"
+          aria-describedby="poderHelp"
+          [(ngModel)]="heroe.poder"
+          name="poder"
+          placeholder="Poder del héroe"
+        />
+        <small id="poderHelp" class="form-text text-muted"
+          >Poder del héroe</small
+        >
+      </div>
+      <div class="form-group">
+        <label>Estado</label>
+        <br />
+        <button *ngIf="heroe.vivo" 
+        (click)="heroe.vivo=false"
+        mat-button class="btn btn-outline-success w-50" type="button">
+          <i class="fa fa-smile-wink"></i> Vivo
+        </button>
+        <button *ngIf="!heroe.vivo" (click)="heroe.vivo=true"  mat-button class="btn btn-outline-danger w-50" type="button">
+          <i class="fa fa-dizzy"></i> Muerto
+        </button>
+      </div>
+      <div class="form-group text-center">
+        <button type="submit" class="btn btn-primary w-25"><i class="fas fa-save"></i> Guardar</button>
+      </div>
+    </form>
+  </div>
+</div>
