@@ -1,5 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import '~swiper/swiper-bundle';
+.swiper-button-prev,
+.swiper-button-next,
+.swiper-pagination-bullet,
+.swiper-pagination-bullet-active {
+    color: white;
+}
+
 body {
     background-color: #14161E;
 }

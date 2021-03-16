@@ -1,1 +1,11 @@
 <p>home-page works!</p>
+<div class="row" *ngIf="movies.length > 0">
+    <div class="col">
+        <app-slideshow *ngIf="movies.length > 0" [movies]="moviesSlideshow"></app-slideshow>
+    </div>
+</div>
+<div class="row" *ngIf="movies.length > 0">
+    <div class="col">
+        <app-peliculas-poste-grid [movies]="movies"></app-peliculas-poste-grid>
+    </div>
+</div>
