@@ -1,1 +1,15 @@
-<p>por-region works!</p>
+<h2>
+    Por region <small>{{ regionActiva | titlecase }}</small>
+</h2>
+<hr />
+<div class="row">
+    <div class="col">
+        <button *ngFor="let region of regiones" [ngClass]="getClaseCss(region)" (click)="activarRegion(region)">
+      {{ region }}
+    </button>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <app-pais-tabla [paises]="resultados"></app-pais-tabla>
+</div>
