@@ -1,29 +1,42 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { SearchGiftResponse, Gif } from '../../interfaces/gifs.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GifsService {
-  private apiKey:string='t4T2xb2ekiEKumzHJ8u5NqVTHVzOlukj';
-  private _historial: string[] = [];
-  public resultados: any[]=[];
-  constructor(private http:HttpClient) { }
-  get historial() {
-    return [...this._historial];
+  private apiKey = 't4T2xb2ekiEKumzHJ8u5NqVTHVzOlukj';
+  private servicioUrl:string='https://api.giphy.com/v1/gifs';
+  private miHistorial: string[] = [];
+  private limit = 20;
+  public resultados: Gif[] = [];
+  constructor(private http: HttpClient) {
+    this.miHistorial = JSON.parse(localStorage.getItem('historial')!) || [];
+    this.resultados = JSON.parse(localStorage.getItem('resultados')!) || [];
   }
-  buscarGisf(query: string) {
-    query=query.trim().toLowerCase();
-    if (!this._historial.includes(query)) {
-      this._historial.unshift(query);
-      this._historial = this._historial.splice(0, 10);
+  get historial(): string[] {
+    return [...this.miHistorial];
+  }
+  buscarGisf(query: string): void {
+    query = query.trim().toLowerCase();
+    if (!this.miHistorial.includes(query)) {
+      this.miHistorial.unshift(query);
+      this.miHistorial = this.miHistorial.splice(0, 10);
+      localStorage.setItem('historial', JSON.stringify(this.miHistorial));
     }
-    this.http.get(`https://api.giphy.com/v1/gifs/search?api_key=${this.apiKey}&q=${query}&limit=15`)
-    .subscribe((resp:any)=>{
-      this.resultados=resp.data;
-      console.log(this.resultados);
-    })
-
-    
+    const params = new HttpParams()
+      .set('api_key', this.apiKey)
+      .set('limit', this.limit.toString())
+      .set('q', query);
+    console.log(params.toString());
+    this.http
+      .get<SearchGiftResponse>(
+        `${this.servicioUrl}/search`, {params}
+      )
+      .subscribe((resp) => {
+        this.resultados = resp.data;
+        localStorage.setItem('resultados', JSON.stringify(this.resultados));
+      });
   }
 }
