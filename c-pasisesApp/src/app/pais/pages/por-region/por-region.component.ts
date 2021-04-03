@@ -17,7 +17,10 @@ export class PorRegionComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  activarRegion(region: string) {
+  activarRegion(region: string): void {
+    if (region === this.regionActiva) {
+      return;
+    }
     this.regionActiva = region;
     this.hayError = false;
     this.termino = region;
@@ -28,7 +31,7 @@ export class PorRegionComponent implements OnInit {
         this.resultados = resp;
       },
       (err) => {
-        // console.log({ err });
+        console.log({ err });
         this.hayError = true;
         this.resultados = [];
       }
