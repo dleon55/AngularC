@@ -9,6 +9,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '../material/material.module';
 import { HeroeCardComponent } from './components/heroe-card/heroe-card.component';
+import { ImagenPipe } from './pipes/imagen.pipe';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -20,12 +22,14 @@ import { HeroeCardComponent } from './components/heroe-card/heroe-card.component
     BuscarComponent,
     HomeComponent,
     HeroeCardComponent,
+    ImagenPipe,
   ],
   imports: [
     CommonModule,
     FlexLayoutModule,
     HeroesRoutingModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ]
 })
 export class HeroesModule { }
