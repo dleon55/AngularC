@@ -11,6 +11,7 @@ import { MaterialModule } from '../material/material.module';
 import { HeroeCardComponent } from './components/heroe-card/heroe-card.component';
 import { ImagenPipe } from './pipes/imagen.pipe';
 import { FormsModule } from '@angular/forms';
+import { ConfirmDelComponent } from './components/confirm-del/confirm-del.component';
 
 
 
@@ -23,6 +24,7 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     HeroeCardComponent,
     ImagenPipe,
+    ConfirmDelComponent,
   ],
   imports: [
     CommonModule,

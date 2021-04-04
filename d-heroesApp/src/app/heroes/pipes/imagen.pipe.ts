@@ -7,7 +7,7 @@ import { Heroe } from '../interfaces/heroe.interface';
 })
 export class ImagenPipe implements PipeTransform {
   transform(heroe: Heroe): any {
-    console.log('pipe');
+    // console.log('pipe');
     if (!heroe.id && !heroe.alt_img) {
       return 'assets/no-image.png';
     } else if (heroe.alt_img) {

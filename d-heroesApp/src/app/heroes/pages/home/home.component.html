@@ -3,9 +3,9 @@
         <mat-toolbar>
             <span>Menú</span>
             <span class="spacer"></span>
-            <button mat-icon-button (click)="sidenav.toggle()"> <mat-icon><span class="material-icons">
-                arrow_back
-                </span></mat-icon></button>
+            <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon><span class="material-icons"> arrow_back </span></mat-icon>
+      </button>
         </mat-toolbar>
         <mat-nav-list>
             <a routerLink="./listado" mat-list-item (click)="sidenav.toggle()">
@@ -28,13 +28,16 @@
     </mat-sidenav>
 
     <mat-toolbar>
-        <button mat-icon-button (click)="sidenav.toggle()"> <mat-icon>menu</mat-icon></button>
+        <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
         <span class="spacer"></span>
-        <button mat-icon-button><mat-icon>logout</mat-icon></button>
+        <span>{{ auth.usuario }}</span>
+        <button (click)="logout()" mat-icon-button>
+      <mat-icon>logout</mat-icon>
+    </button>
     </mat-toolbar>
     <div class="container">
         <router-outlet></router-outlet>
     </div>
-
-
 </mat-sidenav-container>
