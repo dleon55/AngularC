@@ -13,7 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
-
+import {MatStepperModule} from '@angular/material/stepper';
 @NgModule({
   exports: [
     MatAutocompleteModule,
@@ -29,7 +29,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatProgressSpinnerModule,
     MatSelectModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatStepperModule
   ],
 })
 export class MaterialModule {}
