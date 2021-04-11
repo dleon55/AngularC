@@ -9,14 +9,30 @@
     <div class="col-2"></div>
     <div class="col">
         <div class="row">
+
+
             <div class="col-4 mb-2" *ngFor="let propiedad of propiedades">
-                <div class="card">
+                <mat-card class="example-card">
+                    <mat-card-header>
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title>{{propiedad.titulo}}</mat-card-title>
+                        <mat-card-subtitle>{{propiedad.descripcion}}</mat-card-subtitle>
+                    </mat-card-header>
                     <app-mini-mapa [lngLat]="propiedad.lngLat" class="card-img-top"></app-mini-mapa>
-                    <div class="card-body">
-                        <p class="card-title">{{propiedad.titulo}}</p>
-                        <p class="card-text">{{propiedad.descripcion}}</p>
-                    </div>
-                </div>
+                    <mat-card-content>
+                        <p>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab praesentium a quasi mollitia ratione perferendis voluptas, reiciendis eveniet fuga amet quisquam nostrum nam libero culpa rem dolorum aliquam. Sint, id.
+                        </p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-mini-fab color="accent" aria-label="Example icon button with a home icon">
+                            <mat-icon>favorite_border</mat-icon>
+                          </button> &nbsp;
+                        <button mat-mini-fab color="warn" aria-label="Example icon button with a home icon">
+                            <mat-icon>share</mat-icon>
+                          </button>
+                    </mat-card-actions>
+                </mat-card>
             </div>
         </div>
     </div>

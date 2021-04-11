@@ -20,7 +20,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatStepperModule} from '@angular/material/stepper';
-
+import { MatSliderModule } from '@angular/material/slider';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +44,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatSelectModule,
     MatSnackBarModule,
     MatDialogModule,
-    MatStepperModule
+    MatStepperModule,
+    MatSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

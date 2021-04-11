@@ -48,6 +48,7 @@ export class MarcadorComponent implements AfterViewInit, OnDestroy {
   mapa!: mapboxgl.Map;
   zoomLevel: number = 10;
   center: [number, number] = [-99.299285, 19.354713];
+  center2: [number, number] = [-99.29906622946196, 19.35473455027678];
   marcadores: MarcadorColor[] = [];
   constructor() {}
 
@@ -59,9 +60,12 @@ export class MarcadorComponent implements AfterViewInit, OnDestroy {
       zoom: this.zoomLevel,
     });
     this.cargarMarcadores();
-    const markerHtml: HTMLElement = document.createElement('div');
-    markerHtml.innerHTML = 'Hola Mundo';
-    // const marker = new mapboxgl.Marker({element:markerHtml}).setLngLat(this.center).addTo(this.mapa);
+    const markerHtml: HTMLElement =
+     document.createElement('span');
+    markerHtml.innerHTML = 'Hola';
+    const marker2 = new mapboxgl.Marker({ element: markerHtml })
+      .setLngLat(this.center2)
+      .addTo(this.mapa);
     const marker = new mapboxgl.Marker({ draggable: true })
       .setLngLat(this.center)
       .addTo(this.mapa);

@@ -1,11 +1,15 @@
 <ul class="list-group">
-    <li class="list-group-item list-group-item-info" (click)="agregarMarcador()">
-        + Agregar
-    </li>
-    <li *ngFor="let marcador of marcadores; let i = index" class="list-group-item" (click)="irMarcador(marcador.marker!)" (dblclick)="borrarMarcador(i)" [ngStyle]="{
-      'background-color': marcador.color
-    }">
-        marcador {{ i + 1 }}
-    </li>
+    <p>
+        <button mat-raised-button color="secondary" matBadge="8" matBadgePosition="before" matBadgeColor="accent" class="list-group-item list-group-item-info" (click)="agregarMarcador()">
+      + Agregar
+    </button>
+    </p>
+    <p *ngFor="let marcador of marcadores; let i = index">
+        <button mat-raised-button matBadge="8" matBadgePosition="before" matBadgeColor="accent" class="list-group-item" (click)="irMarcador(marcador.marker!)" (dblclick)="borrarMarcador(i)" [ngStyle]="{
+        'background-color': marcador.color
+      }">
+      marcador {{ i + 1 }}
+    </button>
+    </p>
 </ul>
 <div #mapa id="mapa" class="mapa-container"></div>
