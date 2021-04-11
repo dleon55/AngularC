@@ -1,0 +1,5 @@
+<ul class="list-group">
+    <button *ngFor="let item of opciones" [routerLink]="[item.ruta]" routerLinkActive="active" mat-raised-button>
+  {{ item.texto }}
+</button>
+</ul>

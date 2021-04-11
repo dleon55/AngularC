@@ -1,1 +1,16 @@
-<p>dona-http works!</p>
+<h1>Redes sociales más usadas</h1>
+<div *ngIf="doughnutChartData.length === 0; else divGrafica" class="alert alert-info">
+    Cargando Data..
+</div>
+<ng-template class="row" #divGrafica>
+    <div class="col">
+        <div>
+            <div>
+                <div style="display: block">
+                    <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" [colors]="colors">
+          </canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

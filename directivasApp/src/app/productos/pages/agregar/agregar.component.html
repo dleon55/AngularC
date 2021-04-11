@@ -1,0 +1,41 @@
+<mat-sidenav-container class="example-container">
+    <mat-sidenav *ngIf="false" mode="side" opened>Sidenav content</mat-sidenav>
+    <mat-sidenav-content>
+
+        <hr />
+        <mat-grid-list cols="2" rowHeight="3:1">
+            <mat-grid-tile colspan="2" rowspan="1">
+                <h1>Agregar Producto</h1>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="2" rowspan="2">
+                <form [formGroup]="miFormulario">
+                    <div class="row g-3 align-items-center mb-3">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Nombre:</mat-label>
+                            <input matInput placeholder="Escriba el nombre" formControlName="nombre" />
+                            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                            <mat-hint error-msg *ngIf="tieneError('nombre')">
+                                Este campo es requerido</mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col">
+                            <button mat-raised-button color="primary">Guardar</button>
+                        </div>
+                    </div>
+                </form>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="1" rowspan="2">
+                <h3 class="mt-5">Formulario</h3>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="1" rowspan="1">
+
+                <pre>Value:{{ miFormulario.value | json }}</pre>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="1" rowspan="1">
+                <pre>Value:{{ miFormulario.value | json }}</pre>
+                <pre>Valid:{{ miFormulario.valid }}</pre>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </mat-sidenav-content>
+</mat-sidenav-container>
