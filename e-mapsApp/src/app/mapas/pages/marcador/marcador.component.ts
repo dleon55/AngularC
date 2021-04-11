@@ -7,6 +7,11 @@ import {
   ViewChild,
 } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
+interface MarcadorColor {
+  color: string;
+  marker?: mapboxgl.Marker;
+  centro?: [number, number];
+}
 @Component({
   selector: 'app-marcador',
   templateUrl: './marcador.component.html',
@@ -24,7 +29,16 @@ import * as mapboxgl from 'mapbox-gl';
         padding: 10px;
         border-radius: 5px;
         z-index: 999;
-        with: 400px;
+        width: 400px;
+      }
+      .list-group {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 99;
+      }
+      li {
+        cursor: pointer;
       }
     `,
   ],
@@ -34,6 +48,7 @@ export class MarcadorComponent implements AfterViewInit, OnDestroy {
   mapa!: mapboxgl.Map;
   zoomLevel: number = 10;
   center: [number, number] = [-99.299285, 19.354713];
+  marcadores: MarcadorColor[] = [];
   constructor() {}
 
   ngAfterViewInit(): void {
@@ -43,43 +58,72 @@ export class MarcadorComponent implements AfterViewInit, OnDestroy {
       center: this.center,
       zoom: this.zoomLevel,
     });
-    
-    this.mapa.on('zoom', (ev) => {
-      console.log({ ev });
-      const zoomActual = this.mapa.getZoom();
-      this.zoomLevel = zoomActual;
-      const center = this.mapa.getCenter();
-    });
-    this.mapa.on('zoomend', (ev) => {
-      if (this.mapa.getZoom() > 18) {
-        this.mapa.zoomTo(18);
-      }
-    });
-    this.mapa.on('move', (event) => {
-      console.log(event);
-      const target = event.target;
-      const { lng, lat } = target.getCenter();
-      this.center = [lng, lat];
-    });
-    const markerHtml:HTMLElement=document.createElement('div');
-    markerHtml.innerHTML='Hola Mundo';
+    this.cargarMarcadores();
+    const markerHtml: HTMLElement = document.createElement('div');
+    markerHtml.innerHTML = 'Hola Mundo';
     // const marker = new mapboxgl.Marker({element:markerHtml}).setLngLat(this.center).addTo(this.mapa);
-    const marker = new mapboxgl.Marker().setLngLat(this.center).addTo(this.mapa);
+    const marker = new mapboxgl.Marker({ draggable: true })
+      .setLngLat(this.center)
+      .addTo(this.mapa);
+  }
+  ngOnDestroy() {}
+  agregarMarcador() {
+    const color = '#xxxxxx'.replace(/x/g, (y) =>
+      ((Math.random() * 16) | 0).toString(16)
+    );
+    const nuevoMarcador = new mapboxgl.Marker({ draggable: true, color })
+      .setLngLat(this.center)
+      .addTo(this.mapa);
+    this.marcadores.push({
+      color,
+      marker: nuevoMarcador,
+    });
+    this.guardarMarcadores();
+  }
+  irMarcador(marcador: mapboxgl.Marker) {
+    this.mapa.flyTo({
+      center: marcador.getLngLat(),
+    });
+  }
+  guardarMarcadores() {
+    const lngLatArr: MarcadorColor[] = [];
+    this.marcadores.forEach((m) => {
+      const color = m.color;
+      const { lng, lat } = m.marker!.getLngLat();
+      lngLatArr.push({
+        color,
+        centro: [lng, lat],
+      });
+    });
+    localStorage.setItem('marcadores', JSON.stringify(lngLatArr));
+  }
+  cargarMarcadores() {
+    if (!localStorage.getItem('marcadores')) {
+      return;
+    }
+    const lngLatArr: MarcadorColor[] = JSON.parse(
+      localStorage.getItem('marcadores')!
+    );
+    lngLatArr.forEach((m) => {
+      const nuevoMarcador = new mapboxgl.Marker({
+        color: m.color,
+        draggable: true,
+      })
+        .setLngLat(m.centro!)
+        .addTo(this.mapa);
 
+      this.marcadores.push({ marker: nuevoMarcador, color: m.color });
+
+      nuevoMarcador.on('dragend', () => {
+        this.guardarMarcadores();
+      });
+    });
+    console.log({ lngLatArr });
+    // this.marca = localStorage.getItem('marcadores', JSON.parse());
   }
-  ngOnDestroy() {
-    this.mapa.off('zoom', () => {});
-    this.mapa.off('move', () => {});
-    this.mapa.off('zoomend', () => {});
-  }
-  zoomOut() {
-    this.mapa.zoomOut();
-  }
-  zoomIn() {
-    this.mapa.zoomIn();
-  }
-  zoomCambio(valor: string) {
-    console.log(valor);
-    this.mapa.zoomTo(Number(valor));
+  borrarMarcador(i: number) {
+    this.marcadores[i].marker?.remove();
+    this.marcadores.splice(i, 1);
+    this.guardarMarcadores();
   }
 }

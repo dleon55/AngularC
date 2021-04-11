@@ -1,3 +1,25 @@
-<app-menu></app-menu>
+<mat-sidenav-container fullscreen>
+    <mat-sidenav #sidenav mode="push">
+        <mat-toolbar color="primary">
+            <span> <h4> Menú</h4></span>
+            <span class="spacer"></span>
+            <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon><span class="material-icons"> arrow_back </span></mat-icon>
+      </button>
+        </mat-toolbar>
+        <mat-nav-list>
+            <a *ngFor="let item of menuItems" [routerLink]="[item.ruta]" routerLinkActive="active" mat-list-item>
+                <mat-icon mat-list-icon>label</mat-icon>
+                <span> {{ item.nombre }}</span>
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
 
-<router-outlet></router-outlet>
+    <mat-toolbar color="primary">
+        <span> <h4>Maps App</h4> </span>
+        <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+</mat-sidenav-container>

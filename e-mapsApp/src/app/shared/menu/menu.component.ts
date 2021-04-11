@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-interface MenuItem {
+export interface MenuItem {
   ruta: string;
   nombre: string;
 }

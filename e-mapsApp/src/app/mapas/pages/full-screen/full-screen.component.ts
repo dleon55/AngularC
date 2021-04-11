@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 
 import * as mapboxgl from 'mapbox-gl';
 
@@ -7,22 +7,26 @@ import * as mapboxgl from 'mapbox-gl';
   templateUrl: './full-screen.component.html',
   styles: [
     `
-      #mapa {
+      .mapa-container {
         height: 100%;
         width: 100%;
       }
     `,
   ],
 })
-export class FullScreenComponent implements OnInit {
+export class FullScreenComponent implements AfterViewInit {
+  @ViewChild  ('mapa') divMapa!: ElementRef;
+  mapa!: mapboxgl.Map;
+  zoomLevel: number = 10;
+  center: [number, number] = [-99.299285, 19.354713];
   constructor() {}
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     var map = new mapboxgl.Map({
-      container: 'mapa',
+      container: this.divMapa.nativeElement,
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [-99.299285, 19.354713],
-      zoom: 17,
+      center: this.center,
+      zoom: this.zoomLevel,
     });
   }
 }
