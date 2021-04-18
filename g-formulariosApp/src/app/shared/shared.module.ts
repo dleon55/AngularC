@@ -20,7 +20,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatStepperModule } from '@angular/material/stepper';
-import {  RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio';
+
 @NgModule({
   declarations: [SidemenuComponent, HeaderComponent],
   imports: [
@@ -44,6 +47,8 @@ import {  RouterModule } from '@angular/router';
     MatStepperModule,
     MatExpansionModule,
     RouterModule,
+    MatCheckboxModule,
+    MatRadioModule
   ],
   exports: [
     SidemenuComponent,
@@ -66,6 +71,8 @@ import {  RouterModule } from '@angular/router';
     MatSelectModule,
     MatStepperModule,
     MatExpansionModule,
+    MatCheckboxModule,
+    MatRadioModule
   ],
 })
 export class SharedModule {}
