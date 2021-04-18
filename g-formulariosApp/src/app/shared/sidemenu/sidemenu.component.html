@@ -1,0 +1,17 @@
+<h2>Template</h2>
+<hr>
+<mat-selection-list #shoes [multiple]="false">
+    <mat-list-option [routerLink]="[link.link]" routerLinkActive="active" *ngFor="let link of linksTemplate" [value]="link.link">
+        {{link.opcion}}
+    </mat-list-option>
+</mat-selection-list>
+
+
+<hr>
+<h2>Reactive</h2>
+<hr>
+<mat-selection-list #shoes [multiple]="false">
+    <mat-list-option [routerLink]="[link.link]" routerLinkActive="active" *ngFor="let link of linksReactive" [value]="link.link">
+        {{link.opcion}}
+    </mat-list-option>
+</mat-selection-list>
