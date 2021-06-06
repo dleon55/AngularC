@@ -1,5 +1,63 @@
 <div class="text-layout">
     <h1>Pipes personalizados</h1>
-    <p>Pipes creados por {{ 'nosotros' | mayusculas: mayus }}</p>
-    <button pButton label="toogle mayúsculas" (click)="toogle()"></button>
+    <p>Pipes creados por {{ "nosotros" | mayusculas: mayus }}</p>
+</div>
+<p-toolbar>
+    <div class="p-toolbar-group-left"></div>
+
+    <div class="p-toolbar-group-right">
+        <button pButton label="toogle mayúsculas" class="p-mr-1 p-button-warning" (click)="toogle()"></button>
+        <button pButton icon="pi pi-sort" label="nombre" class="p-mr-1" (click)="cambiarOrden('nombre')"></button>
+        <button pButton icon="pi pi-sort" label="Vuela" class="p-mr-1 p-button-success" (click)="cambiarOrden('vuela')"></button>
+        <button pButton icon="pi pi-sort" label="color" class="p-mr-1 p-button-help" (click)="cambiarOrden('color')"></button>
+    </div>
+</p-toolbar>
+<div class="p-grid">
+    <div class="p-col p-mt-2">
+        <p-table [value]="heroes | ordenar: ordenarPor">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Vuela</th>
+                    <th>Color</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+                <tr>
+                    <td>{{ product.nombre }}</td>
+                    <td>{{ product.vuela | vuela | titlecase }}</td>
+                    <td>{{ product.color }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+<div class="p-grid">
+    <div class="p-col p-mt-2">
+        <p-table [value]="heroes | slice: 0">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="nombre">
+                        Nombre
+                        <p-sortIcon field="nombre"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="vuela">
+                        Vuela
+                        <p-sortIcon field="vuela"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="color">
+                        Color
+                        <p-sortIcon field="color"></p-sortIcon>
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+                <tr>
+                    <td>{{ product.nombre }}</td>
+                    <td>{{ product.vuela | vuela | titlecase }}</td>
+                    <td>{{ product.color }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
 </div>
